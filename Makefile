@@ -22,7 +22,7 @@ OBJETOS = $(OBJ:.c=.o)
 #
 # Opções do compilador C
 #
-OPTS = -g -mcpu=cortex-m4 -mthumb -nostdlib
+OPTS = -g -mcpu=cortex-m4 -mthumb -nostdlib -mfloat-abi=hard -mfpu=auto
 
 #
 # Opções do linker
