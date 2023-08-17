@@ -6,5 +6,5 @@ Este projeto consiste em uma biblioteca HAL em C++ para embarcados e sua aplica√
 
  1. Inicialmente, o reposit√≥rio deve ser clonado localmente, em seguida, devem ser executados os seguintes comandos:
  2. `git submodule update --init`
- 3. `make -C libopencm3`
- 4. `make -C prjeto-labproc`
+ 3. `make -C lib/libopencm3`
+ 4. `make`
