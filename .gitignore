@@ -62,5 +62,7 @@ dkms.conf
 !.vscode/tasks.json
 !.vscode/extensions.json
 
-
 # End of https://www.gitignore.io/api/visualstudiocode,c
+
+doc/html/*
+doc/latex/*
