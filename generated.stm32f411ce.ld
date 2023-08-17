@@ -44,9 +44,14 @@ SECTIONS
  } >rom
  . = ALIGN(4);
  _etext = .;
+ .noinit (NOLOAD) : {
+  *(.noinit*)
+ } >ram
+ . = ALIGN(4);
  .data : {
   _data = .;
   *(.data*)
+  *(.ramtext*)
   . = ALIGN(4);
   _edata = .;
  } >ram AT >rom

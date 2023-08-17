@@ -12,7 +12,7 @@ SOURCE_DIR = src
 CXXFILES := $(shell find $(SOURCE_DIR) -name '*.cpp')
 
 # TODO - you will need to edit these two lines!
-DEVICE=stm32f411ce
+DEVICE = stm32f411ce
 
 # You shouldn't have to edit anything below here.
 VPATH += $(SHARED_DIR)
@@ -22,8 +22,8 @@ CONFIG_DIR = cfg
 VPATH += $(CONFIG_DIR)
 INCLUDES += $(patsubst %,-I%, . $(CONFIG_DIR))
 
-OPENCM3_DIR=../libopencm3
+OPENCM3_DIR = lib/libopencm3
 
 include $(OPENCM3_DIR)/mk/genlink-config.mk
-include ../rules.mk
+include rules.mk
 include $(OPENCM3_DIR)/mk/genlink-rules.mk
