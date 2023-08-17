@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cortex Debug (ST-Link OpenOCD)",
+            "cwd": "/home/gabrielcosme/Codes/libopencm3-template",
+            "executable": "projeto-labproc/sebastion.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "openocd",
+            "gdbPath": "gdb-multiarch",
+            "configFiles":
+            [
+                "/usr/share/openocd/scripts/interface/stlink.cfg",
+                "/usr/share/openocd/scripts/target/stm32f4x.cfg"
+            ]
+        },
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "jlink",
+            "cwd": "/home/gabrielcosme/Codes/ProjetoLabProcCube",
+            "gdbPath": "gdb-multiarch",
+            "executable": "build/sebastion.elf",
+            "name": "Cortex Debug (J-Link)",
+            "device": "STM32F411CE",
+            "interface": "swd",
+        }
+    ]
+}
