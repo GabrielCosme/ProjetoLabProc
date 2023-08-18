@@ -4,7 +4,7 @@
         {
             "name": "Cortex Debug (ST-Link OpenOCD)",
             "cwd": "${workspaceRoot}",
-            "executable": "projeto-labproc/sebastion.elf",
+            "executable": "sebastion.elf",
             "request": "launch",
             "type": "cortex-debug",
             "runToEntryPoint": "main",
@@ -22,7 +22,7 @@
             "servertype": "jlink",
             "cwd": "${workspaceRoot}",
             "gdbPath": "gdb-multiarch",
-            "executable": "projeto-labproc/sebastion.elf",
+            "executable": "sebastion.elf",
             "name": "Cortex Debug (J-Link)",
             "device": "STM32F411CE",
             "interface": "swd",
