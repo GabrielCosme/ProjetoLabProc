@@ -4,12 +4,25 @@
 #include <array>
 #include <cstdint>
 #include <libopencm3/stm32/adc.h>
+#include <libopencm3/stm32/dma.h>
 #include <libopencm3/stm32/rcc.h>
 
 #include "hal/hal_gpio.hpp"
 
+struct DmaConfig {
+    uint32_t         dma_number;
+    uint32_t         channel;
+    uint8_t          stream;
+    rcc_periph_clken rcc_clock;
+    uint32_t         priority;
+    uint32_t         memory_size;
+    uint32_t         peripheral_size;
+    uint32_t         peripheral_address;
+};
+
 struct AdcConfig {
     GpioConfig       gpio;
+    DmaConfig        dma;
     uint32_t         adc_number;
     uint32_t         mode;
     rcc_periph_clken rcc_clock;
@@ -48,6 +61,11 @@ class HalAdc {
          * @brief ADC being used
          */
         uint32_t adc_number;
+
+        /**
+         * @brief Buffer to store the ADC readings
+         */
+        uint32_t buffer[number_of_channels];
 
         /**
          * @brief Array to store the average ADC reading of each channel
