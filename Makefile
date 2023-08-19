@@ -6,7 +6,7 @@ OOCD_INTERFACE = stlink-v2
 OOCD_TARGET = stm32f4x
 OPENCM3_LIB = opencm3_stm32f4
 OPENCM3_DEFS = -DSTM32F4
-OPT = -Og
+OPT = -Og -g3
 
 SOURCE_DIR = src
 CXXFILES := $(shell find $(SOURCE_DIR) -name '*.cpp')

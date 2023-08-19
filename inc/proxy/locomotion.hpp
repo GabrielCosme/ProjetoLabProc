@@ -3,6 +3,7 @@
 
 #include "proxy/motor.hpp"
 
+namespace proxy {
 class Locomotion {
     public:
         /**
@@ -13,7 +14,7 @@ class Locomotion {
          * @param left_deadzone Deadzone of the left motor
          * @param right_deadzone Deadzone of the right motor
          */
-        Locomotion(const MotorConfig& left_motor_config, const MotorConfig& right_motor_config,
+        Locomotion(const Motor::Config& left_motor_config, const Motor::Config& right_motor_config,
                    float left_deadzone = 0.0, float right_deadzone = 0.0);
 
         /**
@@ -44,5 +45,6 @@ class Locomotion {
          */
         Motor right_motor;
 };
+}  // namespace proxy
 
 #endif // __LOCOMOTION_HPP__

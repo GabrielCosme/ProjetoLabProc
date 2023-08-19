@@ -1,7 +1,7 @@
 #ifndef __PID_CONTROLLER_HPP__
 #define __PID_CONTROLLER_HPP__
 
-#include <hal/hal_timer.hpp>
+#include <hal/timer.hpp>
 
 /**
  * @brief Implementation of simple PID controller
@@ -75,7 +75,7 @@ class PidController {
         float prev_state = 0;    /**< Previous state for d term */
         float last_response = 0; /**< Last response returned by the controller */
 
-        HalTimer timer;  /**< Timer used to compute the loop time */
+        hal::Timer timer;  /**< Timer used to compute the loop time */
 };
 
 #endif // __PID_CONTROLLER_HPP__

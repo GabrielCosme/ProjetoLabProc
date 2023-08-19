@@ -1,10 +1,11 @@
-#ifndef __HAL_ADC_CPP__
-#define __HAL_ADC_CPP__
+#ifndef __ADC_CPP__
+#define __ADC_CPP__
 
-#include "hal/hal_adc.hpp"
+#include "hal/adc.hpp"
 
+namespace hal {
 template <uint8_t number_of_channels>
-HalAdc<number_of_channels>::HalAdc(const AdcConfig& adc_config) : adc_number(adc_config.adc_number) {
+Adc<number_of_channels>::Adc(const Config& adc_config) : adc_number(adc_config.adc_number) {
     adc_power_off(adc_config.adc_number);
 
     gpio_mode_setup(adc_config.gpio.port, adc_config.gpio.mode, adc_config.gpio.pull_resistor, adc_config.gpio.pin);
@@ -30,7 +31,7 @@ HalAdc<number_of_channels>::HalAdc(const AdcConfig& adc_config) : adc_number(adc
 }
 
 template <uint8_t number_of_channels>
-void HalAdc<number_of_channels>::update_reading(void) {
+void Adc<number_of_channels>::update_reading(void) {
     adc_start_conversion_regular(this->adc_number);
 
     for (uint8_t i = 0; i < number_of_channels; i++) {
@@ -44,8 +45,9 @@ void HalAdc<number_of_channels>::update_reading(void) {
 }
 
 template <uint8_t number_of_channels>
-uint32_t HalAdc<number_of_channels>::get_adc_reading(uint8_t channel) const {
+uint32_t Adc<number_of_channels>::get_adc_reading(uint8_t channel) const {
     return this->adc_reading[channel];
 }
+}  // namespace hal
 
-#endif // __HAL_ADC_CPP__
+#endif // __ADC_CPP__

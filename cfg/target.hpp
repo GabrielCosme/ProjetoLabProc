@@ -1,19 +1,19 @@
 #ifndef __TARGET_HPP__
 #define __TARGET_HPP__
 
-#include "mcu.hpp"
-#include "hal/hal_gpio.hpp"
-#include "hal/hal_adc.hpp"
-#include "proxy/motor.hpp"
+#include "hal/adc.hpp"
+#include "hal/clock.hpp"
+#include "hal/gpio.hpp"
 #include "proxy/button.hpp"
+#include "proxy/motor.hpp"
 
-constexpr ClockConfig clock_config = {
+constexpr hal::Clock::Config clock_config = {
     .clock_scale = &rcc_hse_25mhz_3v3[RCC_CLOCK_3V3_84MHZ],
     .reload = 84000,
     .clocksource = STK_CSR_CLKSOURCE_AHB,
 };
 
-constexpr GpioConfig button_config = {
+constexpr hal::Gpio::Config button_config = {
     .port = GPIOB,
     .pin = GPIO10,
     .mode = GPIO_MODE_INPUT,
@@ -21,9 +21,9 @@ constexpr GpioConfig button_config = {
     .rcc_clock = RCC_GPIOB,
 };
 
-button_pull_resistor_t button_pull_resistor = BUTTON_PULL_UP;
+proxy::Button::pull_resistor_t button_pull_resistor = proxy::Button::PULL_UP;
 
-constexpr GpioConfig led_config = {
+constexpr hal::Gpio::Config led_config = {
     .port = GPIOB,
     .pin = GPIO15,
     .mode = GPIO_MODE_OUTPUT,
@@ -33,7 +33,7 @@ constexpr GpioConfig led_config = {
     .speed = GPIO_OSPEED_2MHZ,
 };
 
-constexpr MotorConfig left_motor_config = {
+constexpr proxy::Motor::Config left_motor_config = {
     .forward_pwm = {
         .gpio = {
             .port = GPIOA,
@@ -74,7 +74,7 @@ constexpr MotorConfig left_motor_config = {
     },
 };
 
-constexpr MotorConfig right_motor_config = {
+constexpr proxy::Motor::Config right_motor_config = {
     .forward_pwm = {
         .gpio = {
             .port = GPIOA,
@@ -129,7 +129,7 @@ uint8_t adc_channels[adc_num_channels] = {
     ADC_CHANNEL7,
 };
 
-constexpr AdcConfig line_sensors_config = {
+constexpr hal::Adc<adc_num_channels>::Config line_sensors_config = {
     .gpio = {
         .port = GPIOA,
         .pin = GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 | GPIO6 | GPIO7,
