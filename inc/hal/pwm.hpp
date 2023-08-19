@@ -1,31 +1,32 @@
-#ifndef __HAL_PWM_HPP__
-#define __HAL_PWM_HPP__
+#ifndef __PWM_HPP__
+#define __PWM_HPP__
 
 #include <cstdint>
 #include <libopencm3/stm32/timer.h>
 #include <libopencm3/stm32/rcc.h>
 
-#include "hal_gpio.hpp"
+#include "hal/gpio.hpp"
 
-struct PwmConfig {
-    GpioConfig       gpio;
-    uint32_t         timer;
-    tim_oc_id        oc_id;
-    rcc_periph_clken rcc_clock;
-    uint32_t         period;
-    uint32_t         clock_div;
-    uint32_t         prescaler;
-    tim_oc_mode      oc_mode;
-};
-
-class HalPwm {
+namespace hal {
+class Pwm {
     public:
+        struct Config {
+            Gpio::Config     gpio;
+            uint32_t         timer;
+            tim_oc_id        oc_id;
+            rcc_periph_clken rcc_clock;
+            uint32_t         period;
+            uint32_t         clock_div;
+            uint32_t         prescaler;
+            tim_oc_mode      oc_mode;
+        };
+
         /**
-         * @brief Construct a new Hal Pwm object
+         * @brief Construct a new Pwm object
          *
          * @param pwm_config Configuration for the pwm instance
          */
-        HalPwm(const PwmConfig& pwm_config);
+        Pwm(const Config& pwm_config);
 
         /**
          * @brief Set the PWM duty cycle
@@ -45,5 +46,6 @@ class HalPwm {
          */
         tim_oc_id channel;
 };
+}  // namespace hal
 
-#endif // __HAL_PWM_HPP__
+#endif // __PWM_HPP__

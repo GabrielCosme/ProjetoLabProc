@@ -1,29 +1,30 @@
-#ifndef __HAL_GPIO_HPP__
-#define __HAL_GPIO_HPP__
+#ifndef __GPIO_HPP__
+#define __GPIO_HPP__
 
 #include <cstdint>
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/rcc.h>
 
-struct GpioConfig {
-    uint32_t         port;
-    uint16_t         pin;
-    uint8_t          mode;
-    uint8_t          pull_resistor;
-    rcc_periph_clken rcc_clock;
-    uint8_t          otype;
-    uint8_t          speed;
-    uint8_t          alt_func_num;
-};
-
-class HalGpio {
+namespace hal {
+class Gpio {
     public:
+        struct Config {
+            uint32_t         port;
+            uint16_t         pin;
+            uint8_t          mode;
+            uint8_t          pull_resistor;
+            rcc_periph_clken rcc_clock;
+            uint8_t          otype;
+            uint8_t          speed;
+            uint8_t          alt_func_num;
+        };
+
         /**
-         * @brief Construct a new Hal GPIO object
+         * @brief Construct a new GPIO object
          *
          * @param gpio_config Configuration of the gpio instance
          */
-        HalGpio(const GpioConfig& gpio_config);
+        Gpio(const Config& gpio_config);
 
         /**
          * @brief Read the GPIO pin
@@ -55,5 +56,6 @@ class HalGpio {
          */
         uint16_t pin;
 };
+}  // namespace hal
 
-#endif // __HAL_GPIO_HPP__
+#endif // __GPIO_HPP__

@@ -1,6 +1,7 @@
-#include "hal/hal_pwm.hpp"
+#include "hal/pwm.hpp"
 
-HalPwm::HalPwm(const PwmConfig& pwm_config) : timer(pwm_config.timer), channel(pwm_config.oc_id) {
+namespace hal {
+Pwm::Pwm(const Config& pwm_config) : timer(pwm_config.timer), channel(pwm_config.oc_id) {
     gpio_mode_setup(pwm_config.gpio.port, pwm_config.gpio.mode, pwm_config.gpio.pull_resistor, pwm_config.gpio.pin);
     gpio_set_af(pwm_config.gpio.port, pwm_config.gpio.alt_func_num, pwm_config.gpio.pin);
     gpio_set_output_options(pwm_config.gpio.port, pwm_config.gpio.otype, pwm_config.gpio.speed, pwm_config.gpio.pin);
@@ -21,6 +22,7 @@ HalPwm::HalPwm(const PwmConfig& pwm_config) : timer(pwm_config.timer), channel(p
     timer_enable_counter(pwm_config.timer);
 }
 
-void HalPwm::set_compare(uint32_t compare) {
+void Pwm::set_compare(uint32_t compare) {
     timer_set_oc_value(this->timer, this->channel, compare);
 }
+}  // namespace hal
