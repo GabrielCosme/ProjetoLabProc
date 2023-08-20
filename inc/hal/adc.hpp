@@ -1,5 +1,5 @@
-#ifndef __HAL_ADC_HPP__
-#define __HAL_ADC_HPP__
+#ifndef __ADC_HPP__
+#define __ADC_HPP__
 
 #include <array>
 #include <cstdint>
@@ -7,8 +7,9 @@
 #include <libopencm3/stm32/dma.h>
 #include <libopencm3/stm32/rcc.h>
 
-#include "hal/hal_gpio.hpp"
+#include "hal/gpio.hpp"
 
+namespace hal {
 struct DmaConfig {
     uint32_t         dma_number;
     uint32_t         channel;
@@ -20,28 +21,28 @@ struct DmaConfig {
     uint32_t         peripheral_address;
 };
 
-struct AdcConfig {
-    GpioConfig       gpio;
-    DmaConfig        dma;
-    uint32_t         adc_number;
-    uint32_t         mode;
-    rcc_periph_clken rcc_clock;
-    rcc_periph_rst   rcc_reset;
-    uint32_t         prescaler;
-    uint32_t         resolution;
-    uint8_t*         channels;
-    uint8_t          sample_time;
-};
-
 template <uint8_t number_of_channels>
-class HalAdc {
+class Adc {
     public:
+        struct Config {
+            Gpio::Config     gpio;
+            DmaConfig        dma;
+            uint32_t         adc_number;
+            uint32_t         mode;
+            rcc_periph_clken rcc_clock;
+            rcc_periph_rst   rcc_reset;
+            uint32_t         prescaler;
+            uint32_t         resolution;
+            uint8_t*         channels;
+            uint8_t          sample_time;
+        };
+
         /**
-         * @brief Construct a new Hal Adc object
+         * @brief Construct a new Adc object
          *
          * @param adc_config Configuration of the ADC
          */
-        HalAdc(const AdcConfig& adc_config);
+        Adc(const Config& adc_config);
 
         /**
          * @brief Update the ADC reading
@@ -54,7 +55,7 @@ class HalAdc {
          * @param channel Channel of the ADC
          * @return uint32_t Reading of the ADC channel
          */
-        uint32_t get_adc_reading(uint8_t channel) const;
+        uint32_t get_reading(uint8_t channel) const;
 
     private:
         /**
@@ -72,7 +73,8 @@ class HalAdc {
          */
         std::array<uint32_t, number_of_channels> adc_reading;
 };
+}  // namespace hal
 
-#include "../src/hal/hal_adc.cpp"
+#include "../src/hal/adc.cpp"
 
-#endif // __HAL_ADC_HPP__
+#endif // __ADC_HPP__

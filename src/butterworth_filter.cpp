@@ -2,7 +2,7 @@
 
 #include "butterworth_filter.hpp"
 
-constexpr float srqt2 = 1.41421356237309504880168872420969807856967187537694807317667973799;
+constexpr float srqt2 = 1.41421356237309504;
 
 ButterworthFilter::ButterworthFilter(float cutoff_frequency, float sampling_frequency) :
     x_array{}, y_array{}, a_array{}, b_array{} {

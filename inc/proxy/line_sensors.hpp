@@ -5,8 +5,9 @@
 #include <array>
 #include <cstdint>
 
-#include "hal/hal_adc.hpp"
+#include "hal/adc.hpp"
 
+namespace proxy {
 template <uint8_t number_of_sensors>
 class LineSensors {
     public:
@@ -15,7 +16,7 @@ class LineSensors {
          *
          * @param adc_config Configuration of the ADC used to read the line sensors
          */
-        LineSensors(const AdcConfig& adc_config);
+        LineSensors(const typename hal::Adc<number_of_sensors>::Config& adc_config);
 
         /**
          * @brief Gets the line position.
@@ -38,7 +39,7 @@ class LineSensors {
         /**
          * @brief ADC used to read the line sensors
          */
-        HalAdc<number_of_sensors> hal_adc;
+        hal::Adc<number_of_sensors> adc;
 
         /**
          * @brief Weight of each sensor to calculate the line position
@@ -60,6 +61,7 @@ class LineSensors {
          */
         std::array<uint32_t, number_of_sensors> line_thresholds;
 };
+}  // namespace proxy
 
 #include "../src/proxy/line_sensors.cpp"
 

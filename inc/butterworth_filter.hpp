@@ -1,5 +1,5 @@
-#ifndef __BUTTERWORTH_SEC_ORDER_HPP__
-#define __BUTTERWORTH_SEC_ORDER_HPP__
+#ifndef __BUTTERWORTH_FILTER_HPP__
+#define __BUTTERWORTH_FILTER_HPP__
 
 #include <array>
 #include <cstdint>
@@ -64,4 +64,4 @@ class ButterworthFilter {
         std::array<float, filter_order + 1> b_array;
 };
 
-#endif // __BUTTERWORTH_SEC_ORDER_HPP__
+#endif // __BUTTERWORTH_FILTER_HPP__

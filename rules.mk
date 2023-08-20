@@ -77,7 +77,7 @@ TGT_CXXFLAGS += $(OPT) $(CXXSTD) -ggdb3
 TGT_CXXFLAGS += $(ARCH_FLAGS)
 TGT_CXXFLAGS += -fno-common
 TGT_CXXFLAGS += -ffunction-sections -fdata-sections
-TGT_CXXFLAGS += -Wextra -Wshadow -Wredundant-decls  -Weffc++
+TGT_CXXFLAGS += -Wextra -Wredundant-decls
 
 TGT_ASFLAGS += $(OPT) $(ARCH_FLAGS) -ggdb3
 

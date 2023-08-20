@@ -1,14 +1,15 @@
-#ifndef __HAL_TIM_HPP__
-#define __HAL_TIM_HPP__
+#ifndef __TIMER_HPP__
+#define __TIMER_HPP__
 
 #include <cstdint>
 
-class HalTimer {
+namespace hal {
+class Timer {
     public:
         /**
-         * @brief Construct a new Hal Timer object
+         * @brief Construct a new Timer object
          */
-        HalTimer();
+        Timer();
 
         /**
          * @brief Reset the timer
@@ -45,5 +46,6 @@ class HalTimer {
          */
         static uint32_t system_ticks;
 };
+}  // namespace hal
 
-#endif // __HAL_TIM_HPP__
+#endif // __TIMER_HPP__
