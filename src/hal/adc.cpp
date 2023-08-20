@@ -45,7 +45,7 @@ void Adc<number_of_channels>::update_reading(void) {
 }
 
 template <uint8_t number_of_channels>
-uint32_t Adc<number_of_channels>::get_adc_reading(uint8_t channel) const {
+uint32_t Adc<number_of_channels>::get_reading(uint8_t channel) const {
     return this->adc_reading[channel];
 }
 }  // namespace hal

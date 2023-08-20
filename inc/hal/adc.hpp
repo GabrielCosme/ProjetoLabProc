@@ -42,7 +42,7 @@ class Adc {
          * @param channel Channel of the ADC
          * @return uint32_t Reading of the ADC channel
          */
-        uint32_t get_adc_reading(uint8_t channel) const;
+        uint32_t get_reading(uint8_t channel) const;
 
     private:
         /**

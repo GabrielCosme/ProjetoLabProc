@@ -27,7 +27,7 @@ float LineSensors<number_of_sensors>::get_position() {
     uint8_t active_sensors = 0;
 
     for (uint8_t i = 0; i < number_of_sensors; i++) {
-        if (this->adc.get_adc_reading(i) < this->line_thresholds[i]) {
+        if (this->adc.get_reading(i) < this->line_thresholds[i]) {
             position += this->sensors_weight[i];
             active_sensors++;
         }
@@ -45,7 +45,7 @@ void LineSensors<number_of_sensors>::calibrate_white() {
     this->adc.update_reading();
 
     for (uint8_t i = 0; i < number_of_sensors; i++) {
-        this->white_readings[i] = this->adc.get_adc_reading(i);
+        this->white_readings[i] = this->adc.get_reading(i);
         this->line_thresholds[i] = (this->white_readings[i] + this->black_readings[i]) / 2;
     }
 }
@@ -55,7 +55,7 @@ void LineSensors<number_of_sensors>::calibrate_black() {
     this->adc.update_reading();
 
     for (uint8_t i = 0; i < number_of_sensors; i++) {
-        this->black_readings[i] = this->adc.get_adc_reading(i);
+        this->black_readings[i] = this->adc.get_reading(i);
         this->line_thresholds[i] = (this->white_readings[i] + this->black_readings[i]) / 2;
     }
 }
