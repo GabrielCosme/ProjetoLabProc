@@ -8,11 +8,11 @@ uint32_t Timer::system_ticks;
 Timer::Timer() : ticks(Timer::system_ticks) {
 }
 
-void Timer::reset(void) {
+void Timer::reset() {
     this->ticks = Timer::system_ticks;
 }
 
-float Timer::get_time(void) const {
+float Timer::get_time() const {
     return (Timer::system_ticks - this->ticks) / 1000.0F;
 }
 
@@ -24,13 +24,13 @@ void Timer::sleep(uint32_t milliseconds) {
     }
 }
 
-void Timer::increment_system_ticks(void) {
+void Timer::increment_system_ticks() {
     Timer::system_ticks++;
 }
 }  // namespace hal
 
 extern "C" {
-void sys_tick_handler(void) {
+void sys_tick_handler() {
     hal::Timer::increment_system_ticks();
 }
 }
