@@ -10,7 +10,7 @@
 #include "proxy/line_sensors.hpp"
 #include "proxy/locomotion.hpp"
 
-int main(void) {
+int main() {
     hal::Clock::init(clock_config);
 
     proxy::Button button(button_config, button_pull_resistor);
