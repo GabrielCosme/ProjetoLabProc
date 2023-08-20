@@ -31,7 +31,7 @@ Adc<number_of_channels>::Adc(const Config& adc_config) : adc_number(adc_config.a
 }
 
 template <uint8_t number_of_channels>
-void Adc<number_of_channels>::update_reading(void) {
+void Adc<number_of_channels>::update_reading() {
     adc_start_conversion_regular(this->adc_number);
 
     for (uint8_t i = 0; i < number_of_channels; i++) {
