@@ -10,7 +10,8 @@
 #include "hal/gpio.hpp"
 
 namespace hal {
-struct DmaConfig {
+namespace Dma {
+struct Config {
     uint32_t         dma_number;
     uint32_t         channel;
     uint8_t          stream;
@@ -20,13 +21,14 @@ struct DmaConfig {
     uint32_t         peripheral_size;
     uint32_t         peripheral_address;
 };
+}
 
 template <uint8_t number_of_channels>
 class Adc {
     public:
         struct Config {
             Gpio::Config     gpio;
-            DmaConfig        dma;
+            Dma::Config      dma;
             uint32_t         adc_number;
             uint32_t         mode;
             rcc_periph_clken rcc_clock;
